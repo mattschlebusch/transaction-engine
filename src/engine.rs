@@ -80,11 +80,9 @@ fn process_transaction(
     };
     debug!("Account data lookup: \n{:?}", account);
 
-    // TODO validate transaction:
-    // - amount value is positive
-
     // TODO Validate against repeated/duplicate transactions by transaction id
     // TODO Block accounts that are locked
+    // TODO Introduce transaction to unlock accounts
     match incoming_transaction.transaction_type {
         crate::types::TransactionType::DEPOSIT => {
             match incoming_transaction.transaction_amount {
