@@ -216,13 +216,8 @@ fn pre_validate_input_file(data_file_str: &str) -> Result<(), ApplicationError> 
 
     // Test accessibility
     let transaction_file = match File::open(file_path) {
-        Err(err) => {
-            panic!("Unable to open [{:?}] - {:?}", file_path, err);
-        }
-        Ok(file) => {
-            debug!("File is open-able");
-            file
-        }
+        Err(err) => return Err(ApplicationError::FileAccess(format!("Unable to open [{:?}] - {}", file_path, err))),
+        Ok(file) => file,
     };
 
     // Check the file size is under the supported maximum
